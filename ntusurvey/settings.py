@@ -13,11 +13,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MANAGERS = ADMINS
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+    #     'NAME': 'ntusurvey', # Or path to database file if using sqlite3.
+    #     'USER': 'root', # Not used with sqlite3.
+    #     'PASSWORD': '1910', # Not used with sqlite3.
+    #     'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+    #     'PORT': '', # Set to empty string for default. Not used with sqlite3.
+    # }
+
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'ntusurvey', # Or path to database file if using sqlite3.
-        'USER': 'root', # Not used with sqlite3.
-        'PASSWORD': '1910', # Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # 'NAME':  os.path.join(BASE_DIR, '..', 'data', 'ntusurvey.db'), # Or path to database file if using sqlite3.
+        'NAME':  os.path.join(os.path.dirname(__file__), '..', 'data', 'ntusurvey.dat'), # Or path to database file if using sqlite3.
+        'USER': '', # Not used with sqlite3.
+        'PASSWORD': '', # Not used with sqlite3.
         'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
@@ -124,7 +134,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'survey',
     'qrcode',
-    'south',
+    # 'south',
     )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -146,3 +156,12 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_URL = '/account/login'
 LOGOUT_URL = '/account/logout'
+
+ROOT_DOMAIN = os.environ.get("ntuservey_domain")
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'cxqntu.noreply@gmail.com'
+EMAIL_HOST_PASSWORD = 'cxqntunoreply'
+EMAIL_USE_TLS = True
