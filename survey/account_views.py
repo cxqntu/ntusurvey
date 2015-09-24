@@ -50,7 +50,7 @@ def send_registration_confirmation(user):
     current_site = Site.objects.get_current()
     subject, from_email, to = "Survey account activation", 'no-reply@localhost', user.email
 
-    link = "http://%s/account/confirm/%s" % (settings.root_domain, str(profile.confirmation_code) + "/" + user.username)
+    link = "http://%s/account/confirm/%s" % (settings.ROOT_DOMAIN, str(profile.confirmation_code) + "/" + user.username)
     text_content = "Hello and welcome to Stardom Survey. We have sent you this e-mail because you recently registered on Stardom Survey. Please click on the following link to activate your account. %s" % link
     html_content = "Hello and welcome to Stardom Survey.<br />We have sent you this e-mail because you recently registered on Stardom Survey.<br />Please click on the following link to activate your account.<br /><a href='%s'>%s</a>" % (link, link)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
