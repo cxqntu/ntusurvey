@@ -21,6 +21,7 @@ from django.contrib.sites.models import get_current_site
 import hashlib
 from django.core.mail import send_mail
 import sha
+from ntusurvey import settings
 
 def register(request):
     if request.method == 'POST':
